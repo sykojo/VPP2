@@ -104,7 +104,7 @@ int main(void)
 
  void expander_init(){
 	 uint8_t buff[3];
-	 buff[0] = 0x15;
+	 buff[0] = 0x14;
 	 buff[1] = 0xff;
 	 buff[2] = 0xff;
 
@@ -114,9 +114,9 @@ int main(void)
 
  void expander_WR(){
 	 uint8_t buff[3];
-	 buff[0] = 0x13;
-	 buff[1] = 0xff;
-	 buff[2] = 0xff;
+	 buff[0] = 0x12;
+	 buff[1] = 0b01111110;
+	 buff[2] = 0b00000000;
 
 	 HAL_I2C_Master_Transmit(&hi2c1, EXPANDER_ADRESS, buff, 3, 1000);
 	 HAL_Delay(100);

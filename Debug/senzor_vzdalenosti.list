@@ -362,8 +362,8 @@ Disassembly of section .text:
  80004d0:	af02      	add	r7, sp, #8
  80004d2:	f8c7 c004 	str.w	ip, [r7, #4]
 	 uint8_t buff[3];
-	 buff[0] = 0x15;
- 80004d6:	2315      	movs	r3, #21
+	 buff[0] = 0x14;
+ 80004d6:	2314      	movs	r3, #20
  80004d8:	733b      	strb	r3, [r7, #12]
 	 buff[1] = 0xff;
  80004da:	23ff      	movs	r3, #255	; 0xff
@@ -464,14 +464,14 @@ expander_WR();
  8000582:	b086      	sub	sp, #24
  8000584:	af02      	add	r7, sp, #8
  8000586:	f8c7 c004 	str.w	ip, [r7, #4]
-	 buff[0] = 0x13;
- 800058a:	2313      	movs	r3, #19
+	 buff[0] = 0x12;
+ 800058a:	2312      	movs	r3, #18
  800058c:	733b      	strb	r3, [r7, #12]
-	 buff[1] = 0xff;
- 800058e:	23ff      	movs	r3, #255	; 0xff
+	 buff[1] = 0b01111110;
+ 800058e:	237e      	movs	r3, #126	; 0x7e
  8000590:	737b      	strb	r3, [r7, #13]
-	 buff[2] = 0xff;
- 8000592:	23ff      	movs	r3, #255	; 0xff
+	 buff[2] = 0b00000000;
+ 8000592:	2300      	movs	r3, #0
  8000594:	73bb      	strb	r3, [r7, #14]
 	 HAL_I2C_Master_Transmit(&hi2c1, EXPANDER_ADRESS, buff, 3, 1000);
  8000596:	4b09      	ldr	r3, [pc, #36]	; (80005bc <expander_WR.1+0x3c>)
