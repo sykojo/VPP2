@@ -112,29 +112,96 @@ int main(void)
 	 HAL_Delay(100);
  }
 
- void expander_WR(){
-	 uint8_t buff[3];
-	 buff[0] = 0x12;
-	 buff[1] = 0b01111110;
-	 buff[2] = 0b00000000;
+ uint8_t numbers[10] = {
+		 0x3f, //0
+		 0x06,//1
+		 0x5B,//2
+		 0x4F,//3
+		 0x66,//4
+		 0x6D,//5
+		 0x7D,//6
+		 0x07,//7
+		 0x7F,//8
+		 0x6F,//9
+ };
 
-	 HAL_I2C_Master_Transmit(&hi2c1, EXPANDER_ADRESS, buff, 3, 1000);
-	 HAL_Delay(100);
+ uint8_t digits[5] = {
+		 0x0,
+		 0x1,
+		 0x2,
+		 0x4,
+		 0x8
+ };
+ void expander_WR_counting(uint8_t *numbers, uint8_t *digits){
+	 uint8_t buff[3];
+	 int digit = 3;
+	 while(digit >=1){
+	 for (int i = 0; i<=9;i++){
+
+	 	 buff[0] = 0x12;
+	 	 buff[1] = (0b0 | ~numbers[i]);
+	 	 buff[2] = 0b0 | (~digits[digit]);
+	 	 if (i == 9){digit--;}
+	 	 HAL_Delay(1000);
+
+
+	 HAL_I2C_Master_Transmit(&hi2c1, EXPANDER_ADRESS, buff, 3, 5);
+
+
+	 }}
+
  }
 
+ void expander_WR_LOW(uint8_t *numbers, uint8_t *digits){
+	 uint8_t buff[3];
+	   	 int digit = 3;
+	   	 	 buff[0] = 0x12;
+	   	 	 buff[1] = (0b0 | 0b0);
+	   	 	 buff[2] = ~(0b0 | 0b0);
+
+
+ 	 HAL_I2C_Master_Transmit(&hi2c1, EXPANDER_ADRESS, buff, 3, 5);
+
+  }
+ void expander_WR(uint8_t *numbers, uint8_t *digits,int number, int dig){
+  	 uint8_t buff[3];
+  	 int digit = 3;
+  	 	 buff[0] = 0x12;
+  	 	 buff[1] = (0b0 | ~numbers[number]);
+  	 	 buff[2] = 0b0 | (~digits[dig]);
+
+
+  	 HAL_I2C_Master_Transmit(&hi2c1, EXPANDER_ADRESS, buff, 3, 1);
+
+
+
+   }
+
+
 expander_init();
-expander_WR();
+expander_WR_counting(&numbers, &digits);
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+int digit = 3;
   while (1)
   {
 
+	  	  expander_WR(&numbers, &digits, 1, 1);
+		  expander_WR_LOW(&numbers, &digits);
 
-	  HAL_Delay(500);
-	  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+
+		  expander_WR(&numbers, &digits, 2, 2);
+		  expander_WR_LOW(&numbers, &digits);
+
+		  expander_WR(&numbers, &digits, 3, 3);
+		  expander_WR_LOW(&numbers, &digits);
+
+
+	  //HAL_Delay(500);
+	  //HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

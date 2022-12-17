@@ -1,8 +1,10 @@
 ../Core/Src/main.c:105:7:expander_init	32	static
-../Core/Src/main.c:71:5:main	16	static
-../Core/Src/main.c:115:7:expander_WR	32	static
-../Core/Src/main.c:150:6:SystemClock_Config	96	static
-../Core/Src/main.c:200:13:MX_I2C1_Init	8	static
-../Core/Src/main.c:248:13:MX_USART2_UART_Init	8	static
-../Core/Src/main.c:283:13:MX_GPIO_Init	48	static
-../Core/Src/main.c:345:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:71:5:main	40	static
+../Core/Src/main.c:135:7:expander_WR_counting	48	static
+../Core/Src/main.c:155:7:expander_WR_LOW	40	static
+../Core/Src/main.c:166:7:expander_WR	48	static
+../Core/Src/main.c:217:6:SystemClock_Config	96	static
+../Core/Src/main.c:267:13:MX_I2C1_Init	8	static
+../Core/Src/main.c:315:13:MX_USART2_UART_Init	8	static
+../Core/Src/main.c:350:13:MX_GPIO_Init	48	static
+../Core/Src/main.c:412:6:Error_Handler	4	static,ignoring_inline_asm
